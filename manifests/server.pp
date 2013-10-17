@@ -151,6 +151,7 @@ class kafka::server(
         owner   => 'kafka',
         group   => 'kafka',
         mode    => '0755',
+        recurse => true,
     }
 
     # log4j configuration for Kafka daemon
