@@ -139,10 +139,10 @@ class kafka::server(
     file { '/etc/default/kafka':
         content => template($default_template),
     }
-
-    $server_properties_template = "kafka/server.${major_version}.erb"
+    # TODO: check if defined template
+    $server_properties = "kafka/server.${major_version}.erb"
     file { '/etc/kafka/server.properties':
-        content => template($server_properties_template),
+        content => template($server_properties),
     }
 
     # This is the message data directory,
