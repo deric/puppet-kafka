@@ -9,10 +9,11 @@
 #
 # $version   - Kafka package version number.  Set this
 #              if you need to override the default
-#              package version.  If you override this,
-#              the version must be >= 0.8.  Default: installed.
+#              package version.
+# $major_version - 0.7 or 0.8
+#
 class kafka(
-    $version = $kafka::defaults::version
+    $version       = $kafka::defaults::version,
 )
 {
     package { 'kafka':

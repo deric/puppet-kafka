@@ -78,7 +78,7 @@
 #
 class kafka::server(
     $enabled                         = true,
-
+    $major_version                   = '0.7',
     $brokers                         = $kafka::defaults::brokers,
     $log_dirs                        = $kafka::defaults::log_dirs,
 
@@ -110,7 +110,7 @@ class kafka::server(
 
     $server_properties_template      = $kafka::defaults::server_properties_template,
     $default_template                = $kafka::defaults::server_default_template,
-    $log4j_properties_template       = $kafka::defaults::log4j_properties_template
+    $log4j_properties_template       = $kafka::defaults::log4j_properties_template,
 ) inherits kafka::defaults
 {
     # Kafka class must be included before kafka::server.
@@ -139,6 +139,8 @@ class kafka::server(
     file { '/etc/default/kafka':
         content => template($default_template),
     }
+
+    $server_properties_template = "kafka/server.${major_version}.erb"
     file { '/etc/kafka/server.properties':
         content => template($server_properties_template),
     }
